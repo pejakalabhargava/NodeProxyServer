@@ -21,7 +21,7 @@ Walkthrough Gif:
 ![Video Walkthrough](walkthrough.gif)
 
 Javascripting Pre Work:
-![Javascripting](javascripting .png)
+![Javascripting](javascripting.png)
 
 Learnyounode Pre Work:
 ![Learnyounode](learnyounode.png)
