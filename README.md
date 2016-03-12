@@ -18,10 +18,13 @@ Completed:
 * [X] Optional: `-h` argument prints CLI API
 
 Walkthrough Gif:
-[Add walkthrough.gif to the project root]
-
 ![Video Walkthrough](walkthrough.gif)
 
+Javascripting Pre Work:
+![Javascripting](javascripting.png)
+
+Learnyounode Pre Work:
+![Learnyounode](learnyounode.png)
 
 ## Starting the Server
 
