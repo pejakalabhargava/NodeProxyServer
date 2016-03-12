@@ -11,7 +11,7 @@ let argv = require('yargs')
     .help('h')
     .alias('h', 'help')
     .epilog('copyright 2016')
-    .default('host', '127.0.0.1:8000')
+    .default('host', '127.0.0.1')
     .argv
 let path = require('path')
 let fs = require('fs')
@@ -39,7 +39,6 @@ let logLevelMap = {
 }
 let exec = argv.exec;
 if (argv.exec) {
-    //let options= argv._.join(" ");
     var child = child_process.spawn(argv.exec, argv._);
 
     child.stdout.on('data',
@@ -57,7 +56,6 @@ if (argv.exec) {
         log(6, 'Child process exited with status ' + status);
     });
 } else {
-//let destinationUrl = '127.0.0.1:8000'
     http.createServer((req, res) => {
         log(6,`Request received at: ${req.url}`)
         //res.end('hello world\n')
@@ -72,14 +70,16 @@ if (argv.exec) {
     http.createServer((req, res) => {
         //Proxy code
         destinationUrl = req.headers['x-destination-url'] || destinationUrl
+        log(6,'Destination URL:' + destinationUrl)
         let options = {
             headers: req.headers,
-            url: `http://${destinationUrl}${req.url}`
+            url: `${destinationUrl}${req.url}`
         }
         options.method = req.method
+        log(6,'Destination method:' + req.method)
         let downstreamResponse = req.pipe(request(options))
         log(6, `Request Headers: ` + JSON.stringify(downstreamResponse.headers))
-        log(6, `Downstream Response: ` + downstreamResponse)
+        log(6, downstreamResponse)
        downstreamResponse.pipe(res)
     }).listen(8001)
 }
